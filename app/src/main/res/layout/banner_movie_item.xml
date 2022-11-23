@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/banner_movie_heigth">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/banner_movie_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/spiderman_nowayhome" />
+
+            <TextView
+                android:id="@+id/banner_movie_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:text="Spider-Man No Way Home"
+                android:textAppearance="@style/Movies.H2"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="@id/guideline" />
+
+            <TextView
+                android:id="@+id/banner_movie_genre_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:text="Action,Horror,Advanture,SciFiction,"
+                android:textAppearance="@style/Movies.S2"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/banner_movie_name" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/banmer_movie_add_mylist_button"
+                android:layout_width="@dimen/banner_movie_button_width"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_add"
+                android:drawableTint="@color/primary"
+                android:text="@string/add_button"
+                android:textAllCaps="false"
+                android:textColor="@color/primary"
+                android:textAppearance="@style/Movies.Button"
+                android:tint="@color/primary"
+                app:cornerRadius="@dimen/large_margin"
+                app:strokeColor="@color/dark"
+                app:strokeWidth="@dimen/extra_small_margin"
+                android:backgroundTint="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/banmer_movie_play_button"
+                app:layout_constraintTop_toBottomOf="@id/banner_movie_genre_text"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/banmer_movie_play_button"
+                android:layout_width="@dimen/banner_movie_button_width"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_play_circle_24"
+                android:drawableTint="@color/white"
+                android:text="@string/play_button"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textAppearance="@style/Movies.Button"
+                android:tint="@color/primary"
+                app:cornerRadius="@dimen/large_margin"
+                app:strokeColor="@color/dark"
+                app:strokeWidth="@dimen/extra_small_margin"
+                android:backgroundTint="@color/dark"
+                app:layout_constraintStart_toEndOf="@id/banmer_movie_add_mylist_button"
+                app:layout_constraintEnd_toStartOf="@id/banmer_movie_info_button"
+                app:layout_constraintTop_toBottomOf="@id/banner_movie_genre_text"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/banmer_movie_info_button"
+                android:layout_width="@dimen/banner_movie_button_width"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_info"
+                android:drawableTint="@color/primary"
+                android:text="@string/info_button"
+                android:textAllCaps="false"
+                android:textColor="@color/primary"
+                android:textAppearance="@style/Movies.Button"
+                android:tint="@color/primary"
+                app:cornerRadius="@dimen/large_margin"
+                app:strokeColor="@color/dark"
+                app:strokeWidth="@dimen/extra_small_margin"
+                android:backgroundTint="@android:color/transparent"
+                app:layout_constraintStart_toEndOf="@id/banmer_movie_play_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/banner_movie_genre_text"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="140dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
