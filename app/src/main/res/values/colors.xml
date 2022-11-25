@@ -11,4 +11,5 @@
     <color name="primary">#4dd0e1</color>
     <color name="light">#88ffff</color>
     <color name="dark">#009faf</color>
+    <color name="surface">#CEEDF1FB</color>
 </resources>

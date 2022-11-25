@@ -25,10 +25,13 @@
             <TextView
                 android:id="@+id/banner_movie_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_margin="@dimen/medium_margin"
                 android:text="Spider-Man No Way Home"
-                android:textAppearance="@style/Movies.H2"
+                android:textAppearance="@style/Movies.H1"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="28sp"
+                app:autoSizeMaxTextSize="32sp"
                 android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="@id/guideline" />
 
@@ -36,7 +39,7 @@
                 android:id="@+id/banner_movie_genre_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/medium_margin"
+                android:layout_marginLeft="@dimen/medium_margin"
                 android:text="Action,Horror,Advanture,SciFiction,"
                 android:textAppearance="@style/Movies.S2"
                 android:textColor="@color/white"

@@ -36,6 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.apply {
             bannerMovieRecyclerView.apply {
                 adapter = bannerMoviesAdapter
+                layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                 setHasFixedSize(true)
             }
         }
@@ -43,17 +44,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun setUpViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    homeViewModel.apply {
-                        getNowPlayingMovies(DEFAULT_LANGUAGE).collectLatest { pagingData ->
-                            bannerMoviesAdapter.submitData(pagingData)
-                        }
-                    }
+            homeViewModel.apply {
+                getNowPlayingMovies(DEFAULT_LANGUAGE).collectLatest { pagingData ->
+                    bannerMoviesAdapter.submitData(pagingData)
                 }
             }
         }
-
     }
 
 
