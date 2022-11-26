@@ -1,17 +1,17 @@
 package com.utkusarican.moviesapplication.features.home.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.utkusarican.moviesapplication.R
 import com.utkusarican.moviesapplication.core.ui.BaseFragment
 import com.utkusarican.moviesapplication.databinding.FragmentHomeBinding
+import com.utkusarican.moviesapplication.features.home.domain.model.Category
 import com.utkusarican.moviesapplication.features.home.ui.adapter.BannerMoviesAdapter
+import com.utkusarican.moviesapplication.features.home.ui.adapter.CategoryMoviesAdapter
 import com.utkusarican.moviesapplication.utils.DEFAULT_LANGUAGE
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -24,12 +24,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val homeViewModel : HomeViewModel by viewModels()
 
-    private val bannerMoviesAdapter = BannerMoviesAdapter()
+    private val bannerMoviesAdapter : BannerMoviesAdapter by lazy { BannerMoviesAdapter() }
+    private val popularMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter() }
+    private val topRatedMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter() }
+
+
+    private val categoryList : ArrayList<Category> = arrayListOf()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpView()
         setUpViewModel()
+        setUpView()
     }
 
     private fun setUpView(){
@@ -39,15 +45,39 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                 setHasFixedSize(true)
             }
+            categoryPopularRecyclerView.apply {
+                adapter = popularMoviesAdapter
+                layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                setHasFixedSize(true)
+            }
+            categoryTopRatedRecylerView.apply {
+                adapter = topRatedMoviesAdapter
+                layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                setHasFixedSize(true)
+            }
         }
     }
 
     private fun setUpViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.apply {
-                getNowPlayingMovies(DEFAULT_LANGUAGE).collectLatest { pagingData ->
-                    bannerMoviesAdapter.submitData(pagingData)
+                launch {
+                    getNowPlayingMovies(DEFAULT_LANGUAGE).collectLatest { nowPlayingMovies ->
+                        bannerMoviesAdapter.submitData(nowPlayingMovies)
+                    }
                 }
+                launch {
+                    getPopularMovies(DEFAULT_LANGUAGE).collectLatest { popularMovies ->
+                        popularMoviesAdapter.submitData(popularMovies)
+                    }
+                }
+                launch {
+                    getTopRatedMovies(DEFAULT_LANGUAGE).collectLatest { topRatedMovies ->
+                   topRatedMoviesAdapter.submitData(topRatedMovies)
+                    }
+                }
+
+
             }
         }
     }

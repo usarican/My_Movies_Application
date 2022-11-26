@@ -8,7 +8,7 @@
     </style>
 
     <style name="Movies.H2" parent="TextAppearance.MaterialComponents.Headline3">
-        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_black</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
     </style>

@@ -1,6 +1,9 @@
 package com.utkusarican.moviesapplication.features.home.domain.model
 
+import androidx.annotation.StringRes
+import androidx.paging.PagingData
+
 data class Category(
-    val categoryName : String,
-    val movies : List<Movie>
+    @StringRes val categoryName : Int,
+    val movies : PagingData<Movie>
 )

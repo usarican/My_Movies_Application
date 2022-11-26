@@ -10,7 +10,7 @@ inline fun ImageView.addImage(imageUrl : String,context : Context){
         .with(context)
         .load(HandleUtils.handleImageUrl(imageUrl))
         .centerCrop()
-        .placeholder(R.drawable.spinner_solid)
-        .into(this);
+        .placeholder(R.drawable.loading_animate)
+        .into(this)
 
 }

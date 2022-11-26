@@ -7,12 +7,16 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".features.home.ui.HomeFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/banner_movie_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/banner_movie_heigth"
@@ -22,15 +26,83 @@
                 tools:itemCount="2"
                 tools:listitem="@layout/banner_movie_item" />
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/category_movies_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/category_popular_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/popular_movies"
+                android:textAppearance="@style/Movies.H2"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginLeft="@dimen/medium_margin"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/banner_movie_recycler_view"
-                tools:listitem="@layout/category_item"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                />
+
+            <TextView
+                android:id="@+id/category_popular_see_all_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all"
+                style="@style/RippleText"
+                android:padding="@dimen/small_padding"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginRight="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/banner_movie_recycler_view"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_popular_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/medium_margin"
+                app:layout_constraintTop_toBottomOf="@id/category_popular_headline"
+                />
+
+            <TextView
+                android:id="@+id/category_top_rated_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_rated_movies"
+                android:textAppearance="@style/Movies.H2"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginLeft="@dimen/medium_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/category_popular_recycler_view"
+                />
+
+            <TextView
+                android:id="@+id/category_top_rated_see_all_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all"
+                android:padding="@dimen/small_padding"
+                style="@style/RippleText"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginRight="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/category_popular_recycler_view"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_top_rated_recyler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/medium_margin"
+                app:layout_constraintTop_toBottomOf="@id/category_top_rated_headline"
+                />
+
+            <View
+                app:layout_constraintTop_toBottomOf="@id/category_top_rated_recyler_view"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </layout>

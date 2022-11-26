@@ -7,5 +7,6 @@ data class Movie(
     val genre_ids : List<Int>,
     @SerializedName("title") val name : String,
     @SerializedName("poster_path") val image : String,
-    @SerializedName("vote_average") val score : Double
+    @SerializedName("vote_average") val score : Double,
+    @SerializedName("release_date") val date : String
 )

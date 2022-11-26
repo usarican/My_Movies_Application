@@ -1,6 +1,7 @@
 package com.utkusarican.moviesapplication.features.home.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -25,6 +26,7 @@ class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.Banner
         val context = holder.itemView.context
         val currentMovie = getItem(position)
         currentMovie?.let {
+            Log.d("BannerMoviesAdapter",currentMovie.toString())
             holder.bind(it,context)
         }
     }
