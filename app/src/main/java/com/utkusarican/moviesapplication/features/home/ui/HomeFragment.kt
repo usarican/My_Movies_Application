@@ -1,7 +1,6 @@
 package com.utkusarican.moviesapplication.features.home.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.utkusarican.moviesapplication.R
 import com.utkusarican.moviesapplication.core.ui.BaseFragment
 import com.utkusarican.moviesapplication.databinding.FragmentHomeBinding
-import com.utkusarican.moviesapplication.features.home.domain.model.Category
 import com.utkusarican.moviesapplication.features.home.ui.adapter.BannerMoviesAdapter
 import com.utkusarican.moviesapplication.features.home.ui.adapter.CategoryMoviesAdapter
 import com.utkusarican.moviesapplication.utils.DEFAULT_LANGUAGE
@@ -28,8 +26,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val popularMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter() }
     private val topRatedMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter() }
 
-
-    private val categoryList : ArrayList<Category> = arrayListOf()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
