@@ -30,10 +30,12 @@
                 android:text="Spider-Man No Way Home"
                 android:textAppearance="@style/Movies.H1"
                 app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="28sp"
-                app:autoSizeMaxTextSize="32sp"
+                app:autoSizeMinTextSize="26sp"
+                app:autoSizeMaxTextSize="30sp"
                 android:textColor="@color/white"
-                app:layout_constraintTop_toTopOf="@id/guideline" />
+                app:layout_constraintTop_toTopOf="@id/guideline"
+                app:layout_constraintBottom_toTopOf="@id/banner_movie_genre_text"
+                />
 
             <TextView
                 android:id="@+id/banner_movie_genre_text"
@@ -41,29 +43,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/medium_margin"
                 android:text="Action,Horror,Advanture,SciFiction,"
-                android:textAppearance="@style/Movies.S2"
+                android:textAppearance="@style/Movies.S1"
                 android:textColor="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/banner_movie_name" />
+                app:layout_constraintTop_toBottomOf="@id/banner_movie_name"
+                app:layout_constraintBottom_toTopOf="@id/banmer_movie_add_mylist_button"
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/banmer_movie_add_mylist_button"
                 android:layout_width="@dimen/banner_movie_button_width"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/button_ripple_effect"
                 android:drawableLeft="@drawable/ic_add"
                 android:drawableTint="@color/primary"
+                app:rippleColor="@color/light"
                 android:text="@string/add_button"
                 android:textAllCaps="false"
-                android:textColor="@color/primary"
                 android:textAppearance="@style/Movies.Button"
+                android:textColor="@color/primary"
                 android:tint="@color/primary"
                 app:cornerRadius="@dimen/large_margin"
-                app:strokeColor="@color/dark"
-                app:strokeWidth="@dimen/extra_small_margin"
-                android:backgroundTint="@android:color/transparent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/banmer_movie_play_button"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/banner_movie_genre_text"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:strokeColor="@color/dark"
+                app:strokeWidth="@dimen/extra_small_margin" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/banmer_movie_play_button"
@@ -78,6 +83,7 @@
                 android:tint="@color/primary"
                 app:cornerRadius="@dimen/large_margin"
                 app:strokeColor="@color/dark"
+                android:layout_marginHorizontal="@dimen/large_margin"
                 app:strokeWidth="@dimen/extra_small_margin"
                 android:backgroundTint="@color/dark"
                 app:layout_constraintStart_toEndOf="@id/banmer_movie_add_mylist_button"
@@ -93,13 +99,15 @@
                 android:drawableTint="@color/primary"
                 android:text="@string/info_button"
                 android:textAllCaps="false"
+
+                app:rippleColor="@color/light"
                 android:textColor="@color/primary"
                 android:textAppearance="@style/Movies.Button"
                 android:tint="@color/primary"
                 app:cornerRadius="@dimen/large_margin"
                 app:strokeColor="@color/dark"
                 app:strokeWidth="@dimen/extra_small_margin"
-                android:backgroundTint="@android:color/transparent"
+                android:backgroundTint="@color/button_ripple_effect"
                 app:layout_constraintStart_toEndOf="@id/banmer_movie_play_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/banner_movie_genre_text"
