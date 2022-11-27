@@ -2,10 +2,12 @@ package com.utkusarican.moviesapplication.features.home.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.utkusarican.moviesapplication.R
+import com.utkusarican.moviesapplication.core.ui.AdapterClickListener
 import com.utkusarican.moviesapplication.core.ui.BaseFragment
 import com.utkusarican.moviesapplication.databinding.FragmentHomeBinding
 import com.utkusarican.moviesapplication.features.home.ui.adapter.BannerMoviesAdapter
@@ -16,15 +18,15 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), AdapterClickListener {
 
     override fun getLayoutId(): Int = R.layout.fragment_home
 
     private val homeViewModel : HomeViewModel by viewModels()
 
     private val bannerMoviesAdapter : BannerMoviesAdapter by lazy { BannerMoviesAdapter() }
-    private val popularMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter() }
-    private val topRatedMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter() }
+    private val popularMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter(this) }
+    private val topRatedMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter(this) }
 
 
 
@@ -92,6 +94,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-
-
+    override fun setOnClickListener(movieId: Int) {
+        Toast.makeText(context,"${movieId}'li Movie Tıklandı",Toast.LENGTH_SHORT).show()
+    }
 }

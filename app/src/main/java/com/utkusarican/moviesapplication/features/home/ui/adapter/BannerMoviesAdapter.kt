@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -23,6 +24,16 @@ class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.Banner
                 bannerMovieImage.addImage(movie.image,context)
                 bannerMovieName.text = movie.name
                 bannerMovieGenreText.text = HandleUtils.handleGenreText(genreList,movie.genre_ids)
+
+                banmerMovieAddMylistButton.setOnClickListener {
+                    Toast.makeText(context,"${movie.name} My List'e Eklendi",Toast.LENGTH_SHORT).show()
+                }
+                banmerMovieInfoButton.setOnClickListener {
+                    Toast.makeText(context,"${movie.name} Info Tıklandı",Toast.LENGTH_SHORT).show()
+                }
+                banmerMoviePlayButton.setOnClickListener {
+                    Toast.makeText(context,"${movie.name} Play Tıklandı.",Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

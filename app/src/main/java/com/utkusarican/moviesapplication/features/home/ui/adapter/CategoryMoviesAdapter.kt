@@ -5,19 +5,33 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.utkusarican.moviesapplication.core.ui.AdapterClickListener
 import com.utkusarican.moviesapplication.databinding.CategoryMovieItemBinding
 import com.utkusarican.moviesapplication.features.home.domain.model.Genre
 import com.utkusarican.moviesapplication.features.home.domain.model.Movie
 import com.utkusarican.moviesapplication.utils.HandleUtils
 import com.utkusarican.moviesapplication.utils.addImage
 
-class CategoryMoviesAdapter : PagingDataAdapter<Movie,CategoryMoviesAdapter.CategoryMoviesViewHolder>(
+class CategoryMoviesAdapter(private val onItemClickListener : AdapterClickListener) : PagingDataAdapter<Movie,CategoryMoviesAdapter.CategoryMoviesViewHolder>(
     COMPARE_MOVIE_ITEM) {
 
     private var genreList : List<Genre> = emptyList()
 
-    class CategoryMoviesViewHolder(private val binding : CategoryMovieItemBinding) : ViewHolder(binding.root){
+    inner class CategoryMoviesViewHolder(private val binding : CategoryMovieItemBinding) : ViewHolder(binding.root){
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if(position != NO_POSITION){
+                    val currentItem = getItem(position)
+                    currentItem?.let {
+                        onItemClickListener.setOnClickListener(currentItem.id)
+                    }
+                }
+            }
+        }
         fun bind(movie: Movie ,context : Context ,genreList : List<Genre>) {
             binding.apply {
                 movieItemImage.addImage(movie.image,context)
