@@ -5,13 +5,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.utkusarican.moviesapplication.R
 import com.utkusarican.moviesapplication.core.ui.AdapterClickListener
 import com.utkusarican.moviesapplication.core.ui.BaseFragment
 import com.utkusarican.moviesapplication.databinding.FragmentHomeBinding
+import com.utkusarican.moviesapplication.features.home.data.model.enum.MoviesType
 import com.utkusarican.moviesapplication.features.home.ui.adapter.BannerMoviesAdapter
 import com.utkusarican.moviesapplication.features.home.ui.adapter.CategoryMoviesAdapter
+import com.utkusarican.moviesapplication.features.seeall.data.model.HomeToSeeAllData
 import com.utkusarican.moviesapplication.utils.DEFAULT_LANGUAGE
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -54,6 +57,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), AdapterClickListener {
                 adapter = topRatedMoviesAdapter
                 layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                 setHasFixedSize(true)
+            }
+
+            categoryPopularSeeAllButton.setOnClickListener {
+                val data = HomeToSeeAllData("Popular Movies",MoviesType.POPULAR)
+                val action = HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(data)
+                findNavController().navigate(action)
+            }
+            categoryTopRatedSeeAllButton.setOnClickListener {
+                val data = HomeToSeeAllData("Top Rated Movies",MoviesType.TOP_RATED)
+                val action = HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(data)
+                findNavController().navigate(action)
             }
         }
     }

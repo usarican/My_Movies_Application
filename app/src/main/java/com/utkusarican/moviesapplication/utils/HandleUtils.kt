@@ -1,6 +1,8 @@
 package com.utkusarican.moviesapplication.utils
 
+import androidx.recyclerview.widget.DiffUtil
 import com.utkusarican.moviesapplication.features.home.domain.model.Genre
+import com.utkusarican.moviesapplication.features.home.domain.model.Movie
 
 object HandleUtils {
 
@@ -40,5 +42,11 @@ object HandleUtils {
             }
         }
         return ""
+    }
+
+    val diffUtilObject = object : DiffUtil.ItemCallback<Movie>(){
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
+
     }
 }

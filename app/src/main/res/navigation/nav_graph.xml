@@ -9,5 +9,17 @@
         android:id="@+id/homeFragment"
         android:name="com.utkusarican.moviesapplication.features.home.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_seeAllFragment"
+            app:destination="@id/seeAllFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/seeAllFragment"
+        android:name="com.utkusarican.moviesapplication.features.seeall.ui.SeeAllFragment"
+        android:label="SeeAllFragment" >
+        <argument
+            android:name="seeAllData"
+            app:argType="com.utkusarican.moviesapplication.features.seeall.data.model.HomeToSeeAllData" />
+    </fragment>
 </navigation>

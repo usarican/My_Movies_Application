@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.seeall.ui.SeeAllFragment">
+
+        <ImageButton
+            android:id="@+id/see_all_back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_back_arrow"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/see_all_page_name"
+            style="@style/Movies.H2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Popular Movies"
+            app:layout_constraintEnd_toStartOf="@id/see_all_search_button"
+            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintStart_toEndOf="@id/see_all_back_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/see_all_search_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toStartOf="@id/right_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_search"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/see_all_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            app:layout_constraintEnd_toStartOf="@id/right_guideline"
+            app:layout_constraintTop_toBottomOf="@id/see_all_page_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="12dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="12dp" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
