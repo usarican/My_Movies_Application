@@ -21,7 +21,7 @@
     <dimen name="movie_row_width">165dp</dimen>
     <dimen name="movie_row_image_width">165dp</dimen>
     <dimen name="movie_row_image_min_height">320dp</dimen>
-    <dimen name="movie_row_image_height">160dp</dimen>
+    <dimen name="movie_row_image_height">180dp</dimen>
 
     <dimen name="edit_text_height">60dp</dimen>
     <dimen name="filter_button_size">60dp</dimen>

@@ -30,8 +30,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpViewModel()
+        setUpGenreList()
+        setUpRecyclerViews()
         setUpView()
+        observeLiveDatas()
     }
 
     private fun setUpView(){
@@ -54,7 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun setUpViewModel() {
+    private fun setUpRecyclerViews() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.apply {
                 launch {
@@ -69,14 +71,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
                 launch {
                     getTopRatedMovies(DEFAULT_LANGUAGE).collectLatest { topRatedMovies ->
-                   topRatedMoviesAdapter.submitData(topRatedMovies)
+                        topRatedMoviesAdapter.submitData(topRatedMovies)
                     }
                 }
-
-
             }
         }
     }
+
+    private fun setUpGenreList(){
+        homeViewModel.getGenreList(DEFAULT_LANGUAGE)
+    }
+
+    private fun observeLiveDatas(){
+        homeViewModel.apply {
+            getGenresLiveData().observe(viewLifecycleOwner){ listGenre ->
+                bannerMoviesAdapter.setGenreList(listGenre)
+                popularMoviesAdapter.setUpGenreList(listGenre)
+                topRatedMoviesAdapter.setUpGenreList(listGenre)
+            }
+        }
+    }
+
 
 
 }

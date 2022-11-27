@@ -4,6 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.utkusarican.moviesapplication.core.data.BaseRepository
+import com.utkusarican.moviesapplication.core.data.State
+import com.utkusarican.moviesapplication.features.home.data.model.Genres
 import com.utkusarican.moviesapplication.features.home.data.model.enum.MoviesType
 import com.utkusarican.moviesapplication.features.home.data.paging_source.MoviesPagingSource
 import com.utkusarican.moviesapplication.features.home.data.remote.HomeRemoteDataSource
@@ -59,4 +61,7 @@ class HomeRepositoryImp @Inject constructor(
                 )
             }
         ).flow
+
+    override suspend fun fetchGenres(language: String): Flow<State<Genres>> =
+        apiCall { homeRemoteDataSource.fetchGenres(language) }
 }

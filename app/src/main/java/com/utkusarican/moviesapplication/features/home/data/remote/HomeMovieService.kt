@@ -1,6 +1,7 @@
 package com.utkusarican.moviesapplication.features.home.data.remote
 
 import com.utkusarican.moviesapplication.features.home.data.model.ApiResponse
+import com.utkusarican.moviesapplication.features.home.data.model.Genres
 import com.utkusarican.moviesapplication.utils.API_KEY
 import com.utkusarican.moviesapplication.utils.STARTING_PAGE
 import retrofit2.http.GET
@@ -28,4 +29,10 @@ interface HomeMovieService {
         @Query("page") page : Int = STARTING_PAGE,
         @Query("language") language: String
     ) : ApiResponse
+
+    @GET("genre/movie/list")
+    suspend fun fetchGenreList(
+        @Query("api_key") apiKey : String = API_KEY,
+        @Query("language") language: String
+    ) : Genres
 }

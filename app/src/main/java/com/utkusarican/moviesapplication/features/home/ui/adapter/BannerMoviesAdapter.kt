@@ -8,16 +8,21 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.utkusarican.moviesapplication.databinding.BannerMovieItemBinding
+import com.utkusarican.moviesapplication.features.home.domain.model.Genre
 import com.utkusarican.moviesapplication.features.home.domain.model.Movie
+import com.utkusarican.moviesapplication.utils.HandleUtils
 import com.utkusarican.moviesapplication.utils.addImage
 
 class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.BannerMovieViewHolder>(BANNER_MOVIE_COMPARATOR) {
 
+    private var genreList : List<Genre> = listOf()
+
     class BannerMovieViewHolder(private val binding: BannerMovieItemBinding) : ViewHolder(binding.root){
-        fun bind(movie: Movie,context: Context){
+        fun bind(movie: Movie,context: Context,genreList : List<Genre>){
             binding.apply {
                 bannerMovieImage.addImage(movie.image,context)
                 bannerMovieName.text = movie.name
+                bannerMovieGenreText.text = HandleUtils.handleGenreText(genreList,movie.genre_ids)
             }
         }
     }
@@ -26,8 +31,8 @@ class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.Banner
         val context = holder.itemView.context
         val currentMovie = getItem(position)
         currentMovie?.let {
-            Log.d("BannerMoviesAdapter",currentMovie.toString())
-            holder.bind(it,context)
+            Log.d("BannerMoviesAdapter",genreList.toString())
+            holder.bind(it,context,genreList)
         }
     }
 
@@ -45,5 +50,9 @@ class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.Banner
                 oldItem.id == newItem.id
 
         }
+    }
+
+    fun setGenreList(newGenreList : List<Genre>) {
+        this.genreList = newGenreList
     }
 }

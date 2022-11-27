@@ -1,6 +1,7 @@
 package com.utkusarican.moviesapplication.features.home.data.remote
 
 import com.utkusarican.moviesapplication.features.home.data.model.ApiResponse
+import com.utkusarican.moviesapplication.features.home.data.model.Genres
 import javax.inject.Inject
 
 class HomeRemoteDataSource @Inject constructor(
@@ -24,4 +25,9 @@ class HomeRemoteDataSource @Inject constructor(
         language : String
     ) : ApiResponse =
         homeMovieService.fetchNowPlayingMovies(page = page, language = language)
+
+    suspend fun fetchGenres(
+        language: String
+    ) : Genres =
+        homeMovieService.fetchGenreList(language = language)
 }
