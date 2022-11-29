@@ -5,7 +5,14 @@
     <string name="add_button">My List</string>
     <string name="info_button">Info</string>
     <string name="play_button">Play</string>
+    <string name="download_button">Download</string>
     <string name="see_all">See All</string>
     <string name="popular_movies">POPULAR</string>
     <string name="top_rated_movies">TOP RATED</string>
+    <string name="genre">Genres :</string>
+    <string name="trailer">Trailers</string>
+    <string name="more_like_this">More Like This</string>
+    <string name="commnets">Comments </string>
+
+
 </resources>
