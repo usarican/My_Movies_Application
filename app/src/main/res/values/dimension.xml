@@ -23,6 +23,9 @@
     <dimen name="detail_movie_card_view_width">120dp</dimen>
     <dimen name="detail_movie_card_view_height">50dp</dimen>
 
+    <dimen name="review_item_card_height">100dp</dimen>
+    <dimen name="review_item_image_height">50dp</dimen>
+    <dimen name="review_item_image_width">50dp</dimen>
 
     <dimen name="movie_row_width">165dp</dimen>
     <dimen name="movie_row_image_width">165dp</dimen>
