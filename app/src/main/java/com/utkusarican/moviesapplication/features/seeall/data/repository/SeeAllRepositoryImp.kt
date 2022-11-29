@@ -1,11 +1,14 @@
 package com.utkusarican.moviesapplication.features.seeall.data.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.utkusarican.moviesapplication.features.home.data.model.enum.MoviesType
 import com.utkusarican.moviesapplication.features.home.domain.model.Movie
 import com.utkusarican.moviesapplication.features.seeall.data.paging_source.SeeAllPagingSource
+import com.utkusarican.moviesapplication.features.seeall.data.paging_source.SeeAllSearchPagingSource
 import com.utkusarican.moviesapplication.features.seeall.data.remote.SeeAllRemoteDataSource
 import com.utkusarican.moviesapplication.features.seeall.domain.repository.SeeAllRepository
 import com.utkusarican.moviesapplication.utils.ITEMS_PER_PAGE
@@ -25,7 +28,7 @@ class SeeAllRepositoryImp @Inject constructor(
                 SeeAllPagingSource(
                     seeAllRemoteDataSource = seeAllRemoteDataSource,
                     language = language,
-                    moviesType = MoviesType.POPULAR
+                    moviesType = MoviesType.POPULAR,
                 )
             }
         ).flow
@@ -39,10 +42,23 @@ class SeeAllRepositoryImp @Inject constructor(
                 SeeAllPagingSource(
                     seeAllRemoteDataSource = seeAllRemoteDataSource,
                     language = language,
-                    moviesType = MoviesType.TOP_RATED
+                    moviesType = MoviesType.TOP_RATED,
                 )
             }
         ).flow
 
+    override fun searchMovies(language: String, query: String): LiveData<PagingData<Movie>> =
+        Pager(
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE
+            ),
+            pagingSourceFactory = {
+                SeeAllSearchPagingSource(
+                    seeAllRemoteDataSource = seeAllRemoteDataSource,
+                    language = language,
+                    query = query
+                )
+            }
+        ).liveData
 
 }

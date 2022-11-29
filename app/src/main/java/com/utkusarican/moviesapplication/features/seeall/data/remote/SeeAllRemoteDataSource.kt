@@ -17,4 +17,11 @@ class SeeAllRemoteDataSource @Inject constructor(
         language : String
     ) : ApiResponse =
         seeAllService.fetchTopRatedMovies(page = page, language = language)
+
+    suspend fun searchMovies(
+        page: Int,
+        query: String,
+        language: String
+    ) : ApiResponse =
+        seeAllService.searchMovies(page = page, query = query, language = language)
 }

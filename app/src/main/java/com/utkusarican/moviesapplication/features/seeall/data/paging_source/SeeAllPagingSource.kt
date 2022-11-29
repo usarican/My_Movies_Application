@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SeeAllPagingSource @Inject constructor(
     private val seeAllRemoteDataSource: SeeAllRemoteDataSource,
     private val language : String,
-    private val moviesType: MoviesType
+    private val moviesType: MoviesType,
 ): PagingSource<Int,Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? =
         state.anchorPosition

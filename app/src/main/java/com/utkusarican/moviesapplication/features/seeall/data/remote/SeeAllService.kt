@@ -22,4 +22,12 @@ interface SeeAllService {
         @Query("language") language: String
     ) : ApiResponse
 
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("api_key") apiKey : String = API_KEY,
+        @Query("page") page : Int = STARTING_PAGE,
+        @Query("query") query : String,
+        @Query("language") language: String,
+    ) : ApiResponse
+
 }
