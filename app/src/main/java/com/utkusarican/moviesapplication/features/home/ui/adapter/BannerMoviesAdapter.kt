@@ -8,17 +8,18 @@ import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.utkusarican.moviesapplication.core.ui.AdapterClickListener
 import com.utkusarican.moviesapplication.databinding.BannerMovieItemBinding
 import com.utkusarican.moviesapplication.features.home.domain.model.Genre
 import com.utkusarican.moviesapplication.features.home.domain.model.Movie
 import com.utkusarican.moviesapplication.utils.HandleUtils
 import com.utkusarican.moviesapplication.utils.addImage
 
-class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.BannerMovieViewHolder>(BANNER_MOVIE_COMPARATOR) {
+class BannerMoviesAdapter(private val onClickListener : AdapterClickListener) : PagingDataAdapter<Movie,BannerMoviesAdapter.BannerMovieViewHolder>(BANNER_MOVIE_COMPARATOR) {
 
     private var genreList : List<Genre> = listOf()
 
-    class BannerMovieViewHolder(private val binding: BannerMovieItemBinding) : ViewHolder(binding.root){
+    inner class BannerMovieViewHolder(private val binding: BannerMovieItemBinding) : ViewHolder(binding.root){
         fun bind(movie: Movie,context: Context,genreList : List<Genre>){
             binding.apply {
                 bannerMovieImage.addImage(movie.image,context)
@@ -29,7 +30,7 @@ class BannerMoviesAdapter() : PagingDataAdapter<Movie,BannerMoviesAdapter.Banner
                     Toast.makeText(context,"${movie.name} My List'e Eklendi",Toast.LENGTH_SHORT).show()
                 }
                 banmerMovieInfoButton.setOnClickListener {
-                    Toast.makeText(context,"${movie.name} Info Tıklandı",Toast.LENGTH_SHORT).show()
+                    onClickListener.setOnClickListener(movie.id)
                 }
                 banmerMoviePlayButton.setOnClickListener {
                     Toast.makeText(context,"${movie.name} Play Tıklandı.",Toast.LENGTH_SHORT).show()

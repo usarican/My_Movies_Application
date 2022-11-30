@@ -1,6 +1,7 @@
 package com.utkusarican.moviesapplication.features.home.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -27,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), AdapterClickListener {
 
     private val homeViewModel : HomeViewModel by viewModels()
 
-    private val bannerMoviesAdapter : BannerMoviesAdapter by lazy { BannerMoviesAdapter() }
+    private val bannerMoviesAdapter : BannerMoviesAdapter by lazy { BannerMoviesAdapter(this) }
     private val popularMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter(this) }
     private val topRatedMoviesAdapter : CategoryMoviesAdapter by lazy { CategoryMoviesAdapter(this) }
 
@@ -109,6 +110,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), AdapterClickListener {
     }
 
     override fun setOnClickListener(movieId: Int) {
-        Toast.makeText(context,"${movieId}'li Movie Tıklandı",Toast.LENGTH_SHORT).show()
+        Log.d("HOMEFRAGMENT",movieId.toString())
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(movieId)
+        findNavController().navigate(action)
     }
 }

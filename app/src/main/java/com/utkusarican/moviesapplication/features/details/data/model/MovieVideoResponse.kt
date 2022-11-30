@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieVideoResponse(
   val id : Int,
-  val results : MovieVideo
+  val results : List<MovieVideo>
 ) {
   data class MovieVideo(
     @SerializedName("iso_639_1") val iso639_1: String,

@@ -1,6 +1,8 @@
 package com.utkusarican.moviesapplication.utils
 
 import androidx.recyclerview.widget.DiffUtil
+import com.utkusarican.moviesapplication.features.details.data.model.MovieDetails
+import com.utkusarican.moviesapplication.features.details.domain.model.DetailGenre
 import com.utkusarican.moviesapplication.features.home.domain.model.Genre
 import com.utkusarican.moviesapplication.features.home.domain.model.Movie
 
@@ -49,4 +51,15 @@ object HandleUtils {
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
 
     }
+
+    fun handleGenreTextDetailMovie(movieGenreList : List<DetailGenre>) : String {
+        var genreText = ""
+        var count = 0
+        for(genre in movieGenreList){
+            genreText += if(count != movieGenreList.size - 1) "${genre.name} ," else genre.name
+            count++
+        }
+        return genreText
+    }
+
 }

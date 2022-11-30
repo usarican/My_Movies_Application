@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_seeAllFragment"
             app:destination="@id/seeAllFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/seeAllFragment"
@@ -21,5 +24,16 @@
         <argument
             android:name="seeAllData"
             app:argType="com.utkusarican.moviesapplication.features.seeall.data.model.HomeToSeeAllData" />
+        <action
+            android:id="@+id/action_seeAllFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.utkusarican.moviesapplication.features.details.ui.view.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="movie_id"
+            app:argType="integer" />
     </fragment>
 </navigation>

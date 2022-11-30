@@ -11,38 +11,38 @@ interface MovieDetailService {
 
     @GET("movie/{movie_id}")
     suspend fun fetchMovieDetails(
+        @Path("movie_id") movie_id : Int,
         @Query("api_key") apiKey : String = API_KEY,
         @Query("language") language: String,
-        @Path("movie_id") movieId : Int
     ) : MovieDetails
 
     @GET("movie/{movie_id}/credits")
     suspend fun fetchMovieCredits(
+        @Path("movie_id") movie_id : Int,
         @Query("api_key") apiKey : String = API_KEY,
         @Query("language") language: String,
-        @Path("movie_id") movieId : Int
     ) : MovieCredits
 
     @GET("movie/{movie_id}/similar")
     suspend fun fetchSimilarMovies(
+        @Path("movie_id") movie_id : Int,
         @Query("api_key") apiKey : String = API_KEY,
         @Query("page") page : Int = STARTING_PAGE,
-        @Query("language") language: String,
-        @Path("movie_id") movieId : Int
+        @Query("language") language: String
     ) : SimilarMovieResponse
 
     @GET("movie/{movie_id}/videos")
     suspend fun fetchMovieVideos(
+        @Path("movie_id") movie_id : Int,
         @Query("api_key") apiKey : String = API_KEY,
-        @Query("language") language: String,
-        @Path("movie_id") movieId : Int
+        @Query("language") language: String
     ) : MovieVideoResponse
 
     @GET("movie/{movie_id}/reviews")
     suspend fun fetchMovieReviews(
+        @Path("movie_id") movie_id : Int,
         @Query("api_key") apiKey : String = API_KEY,
         @Query("page") page : Int = STARTING_PAGE,
         @Query("language") language: String,
-        @Path("movie_id") movieId : Int
     ) : ReviewResponse
 }

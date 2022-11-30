@@ -37,7 +37,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/detail_page_movie_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:text="Spiderman No Way Home"
                         android:ellipsize="end"
@@ -45,6 +45,7 @@
                         android:textAppearance="@style/Movies.H4"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="@id/guideline_left"
+                        app:layout_constraintEnd_toStartOf="@id/detail_page_add_mylist_button"
                         tools:layout_editor_absoluteY="4dp" />
 
                     <ImageButton
@@ -53,8 +54,7 @@
                         android:src="@drawable/ic_mylist"
                         android:layout_width="@dimen/iconSizeLarge"
                         android:layout_height="@dimen/iconSizeLarge"
-                        app:layout_constraintStart_toEndOf="@id/detail_page_movie_name"
-                        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+                        app:layout_constraintEnd_toStartOf="@id/detail_page_share_button"
                         app:tint="@color/dark" />
 
                     <ImageButton
