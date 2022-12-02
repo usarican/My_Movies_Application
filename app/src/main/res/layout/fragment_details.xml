@@ -48,24 +48,32 @@
                         app:layout_constraintEnd_toStartOf="@id/detail_page_add_mylist_button"
                         tools:layout_editor_absoluteY="4dp" />
 
-                    <ImageButton
+                    <ToggleButton
                         android:id="@+id/detail_page_add_mylist_button"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_mylist"
                         android:layout_width="@dimen/iconSizeLarge"
                         android:layout_height="@dimen/iconSizeLarge"
+                        android:background="@drawable/my_list_button_selector"
+                        android:backgroundTint="@color/dark"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:textOff=""
+                        android:textOn=""
                         app:layout_constraintEnd_toStartOf="@id/detail_page_share_button"
-                        app:tint="@color/dark" />
+                        tools:layout_editor_absoluteY="6dp" />
 
-                    <ImageButton
+                    <ToggleButton
                         android:id="@+id/detail_page_share_button"
-                        android:background="@color/white"
-                        android:src="@drawable/ic_share"
                         android:layout_width="@dimen/iconSizeLarge"
                         android:layout_height="@dimen/iconSizeLarge"
-                        app:tint = "@color/dark"
+                        android:background="@drawable/ic_share"
+                        android:backgroundTint="@color/dark"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:textOff=""
+                        android:textOn=""
                         app:layout_constraintEnd_toStartOf="@id/guideline_right"
-                        />
+                        tools:layout_editor_absoluteY="6dp" />
 
                     <ImageView
                         android:id="@+id/detail_page_star_icon"
