@@ -227,11 +227,6 @@
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/trailer" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="@string/more_like_this" />
 
                         <com.google.android.material.tabs.TabItem

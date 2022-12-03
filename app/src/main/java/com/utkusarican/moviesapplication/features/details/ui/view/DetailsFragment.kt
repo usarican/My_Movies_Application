@@ -6,11 +6,15 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.utkusarican.moviesapplication.R
 import com.utkusarican.moviesapplication.core.ui.BaseFragment
 import com.utkusarican.moviesapplication.databinding.FragmentDetailsBinding
 import com.utkusarican.moviesapplication.features.details.data.model.MovieDetails
 import com.utkusarican.moviesapplication.features.details.ui.adapter.DetailMovieCastAdapter
+import com.utkusarican.moviesapplication.features.details.ui.adapter.ViewPagerAdapter
+import com.utkusarican.moviesapplication.features.details.ui.model.ViewPagerItem
 import com.utkusarican.moviesapplication.features.details.ui.viewmodel.DetailsViewModel
 import com.utkusarican.moviesapplication.utils.DEFAULT_LANGUAGE
 import com.utkusarican.moviesapplication.utils.HandleUtils
@@ -26,14 +30,17 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     private val castAdapter : DetailMovieCastAdapter by lazy {
         DetailMovieCastAdapter()
     }
-    private lateinit var movie : MovieDetails
+
+    private var movieId = 0
+    private val viewPagerItemList = ArrayList<ViewPagerItem>()
 
     override fun getLayoutId(): Int = R.layout.fragment_details
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movieId = args.movieId
 
+        movieId = args.movieId
         getMovieDetails(movieId)
         getMovieCredits(movieId)
         setUpViewModel()
@@ -64,6 +71,15 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
                 setHasFixedSize(true)
             }
+            viewPagerItemList.add(ViewPagerItem(MoreLikeThisFragment(movieId),"More Like This"))
+            viewPagerItemList.add(ViewPagerItem(CommentsFragment(),"Comments"))
+            val viewPagerAdapter = ViewPagerAdapter(requireActivity(),viewPagerItemList)
+            detailPageViewPager.adapter = viewPagerAdapter
+            TabLayoutMediator(detailPageTabLayout,detailPageViewPager) { tab, position ->
+                tab.text = viewPagerItemList[position].layoutHeadline
+            }.attach()
+
+
         }
     }
 
