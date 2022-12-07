@@ -10,6 +10,7 @@ import com.utkusarican.moviesapplication.core.ui.AdapterClickListener
 import com.utkusarican.moviesapplication.databinding.SeeAllMovieItemBinding
 import com.utkusarican.moviesapplication.features.details.data.model.SimilarMovieResponse
 import com.utkusarican.moviesapplication.utils.addImage
+import com.utkusarican.moviesapplication.utils.oneDecimal
 
 class SimilarMoviePagingAdapter(private val onItemClickListener: AdapterClickListener) : PagingDataAdapter<SimilarMovieResponse.SimilarMovie, SimilarMoviePagingAdapter.SimilarMoviesViewHolder>(
 COMPARE_SIMILAR_MOVIES ) {
@@ -30,7 +31,7 @@ COMPARE_SIMILAR_MOVIES ) {
         fun bind(movie: SimilarMovieResponse.SimilarMovie, context : Context){
             binding.apply {
                 movieItemImage.addImage(movie.image,context)
-                movieItemScore.text = movie.score.toString()
+                movieItemScore.text = movie.score.oneDecimal().toString()
 
             }
         }
